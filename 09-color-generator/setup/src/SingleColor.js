@@ -1,8 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import rgbToHex from './utils'
+import React, { useState, useEffect } from 'react';
+import rgbToHex from './utils';
 
-const SingleColor = () => {
-  return <h4>single color</h4>
-}
+const SingleColor = props => {
+  const [alert, setAlert] = useState(false);
+  const { rgb, weight } = props.color;
+  const { hexColor } = props;
+  const { index } = props.index;
 
-export default SingleColor
+  const hex = rgbToHex(...rgb);
+
+  const bcg = rgb.join(',');
+
+  return (
+    <article className={`color`} style={{ backgroundColor: `rgb(${bcg})` }}>
+      <p className='percent-value'>{weight}%</p>
+      <p className='color-value'>#{hexColor}</p>
+    </article>
+  );
+};
+
+export default SingleColor;
